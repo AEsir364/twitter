@@ -1,0 +1,153 @@
+.postInputContainer {
+    background-color: #1a1a1b;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 25px;
+}
+
+.postInputForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.postTextarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #3c3c3e;
+    border-radius: 8px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 16px;
+    resize: vertical;
+    outline: none;
+    background-color: #2c2c2e;
+    color: #f5f5f5;
+    min-height: 80px;
+    max-height: 200px;
+}
+
+.postTextarea::placeholder {
+    color: #888;
+}
+
+.postTextarea:focus {
+    border-color: #1DA1F2;
+    box-shadow: 0 0 0 3px rgba(29, 161, 242, 0.3);
+}
+
+.postTextarea:disabled {
+    background-color: #3c3c3e;
+    color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+.imagePreview {
+    position: relative;
+    width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.previewImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.removeImageButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.2s ease;
+}
+
+.removeImageButton:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.postActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 10px;
+    border-top: 1px solid #3c3c3e;
+}
+
+.fileInput {
+    display: none;
+}
+
+.uploadButton {
+    background-color: transparent;
+    color: #1DA1F2;
+    border: 1px solid #1DA1F2;
+    border-radius: 9999px;
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 15px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.uploadButton:hover {
+    background-color: #1DA1F2;
+    color: #fff;
+}
+
+.uploadButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #a0a0a0;
+    color: #a0a0a0;
+    background-color: transparent;
+}
+
+.sendPostButton {
+    background-color: #1DA1F2;
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 15px;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.sendPostButton:hover {
+    background-color: #188FCF;
+}
+
+.sendPostButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

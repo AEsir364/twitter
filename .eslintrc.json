@@ -1,0 +1,30 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    // ... suas regras existentes
+    // "no-undef": "off" // Você pode adicionar isso se o 'globals' sozinho não resolver
+  },
+  "globals": {
+    "__firebase_config": "readonly",
+    "__app_id": "readonly",
+    "__initial_auth_token": "readonly"
+  }
+}
