@@ -16,7 +16,7 @@ function SignupPage() {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
-  const logoPath = "/Images/logo.png";
+  const logoPath = "/Images/Logo.png";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
