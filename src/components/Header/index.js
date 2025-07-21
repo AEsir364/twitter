@@ -57,7 +57,7 @@ function Header() {
     try {
       await signOut(auth);
       console.log("Usuário deslogado com sucesso!");
-      navigate('/login');
+      navigate('/Login');
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
     }
