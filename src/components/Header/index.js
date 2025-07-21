@@ -57,13 +57,13 @@ function Header() {
     try {
       await signOut(auth);
       console.log("Usuário deslogado com sucesso!");
-      navigate('/Login');
+      navigate('/login');
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
     }
   };
 
-  const logoPath = "/Images/logo.png";
+  const logoPath = "/Images/Logo.png";
 
   if (location.pathname === '/' || location.pathname === '/login' || location.pathname === '/signup') {
     return null;
