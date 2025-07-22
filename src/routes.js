@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate, useLocation, useNavigate } from 'react-router-dom';
-
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import FeedPage from './pages/FeedPage';
@@ -8,8 +7,6 @@ import ProfilePage from './pages/ProfilePage';
 import Header from './components/Header';
 import NewPostButton from './components/NewPostButton';
 import PostCreationModal from './components/PostCreationModal';
-
-// Firebase imports
 import { auth, db } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
@@ -59,9 +56,7 @@ function AppContent() {
 
   // Protects routes, redirecting unauthenticated users.
   useEffect(() => {
-    // Se não estiver carregando, não autenticado, e a rota NÃO for login/cadastro, redireciona
-    if (!loadingAuthAndProfile && !isAuthenticated && 
-        location.pathname !== '/login' && location.pathname !== '/signup') {
+    if (!loadingAuthAndProfile && !isAuthenticated && (location.pathname === '/feed' || location.pathname.startsWith('/profile'))) {
       navigate('/login');
     }
   }, [loadingAuthAndProfile, isAuthenticated, location.pathname, navigate]);
@@ -75,8 +70,7 @@ function AppContent() {
     setShowPostCreationModal(prev => !prev);
   };
 
-  // Define quais páginas NÃO devem ter Header/NewPostButton (apenas login/cadastro)
-  const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
+  const isAuthPage = location.pathname === '/' || location.pathname === '/login' || location.pathname === '/signup';
 
   if (loadingAuthAndProfile) {
     return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#15202B', color: '#e0e0e0' }}>Carregando...</div>;
@@ -84,27 +78,19 @@ function AppContent() {
 
   return (
     <>
-      {/* Renderiza o Header em todas as páginas, EXCETO login/cadastro */}
       {!isAuthPage && <Header />}
       
       <Routes>
-        {/* Rota raiz agora é o FeedPage, mas protegida */}
-        <Route path="/" element={isAuthenticated ? <FeedPage /> : <Navigate to="/login" replace />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        {/* FeedPage e ProfilePage continuam protegidas, mas FeedPage é o default */}
         <Route path="/feed" element={isAuthenticated ? <FeedPage /> : <Navigate to="/login" replace />} />
         <Route path="/profile/:userId" element={isAuthenticated ? <ProfilePage /> : <Navigate to="/login" replace />} />
-        {/* Redireciona qualquer rota não encontrada para o feed (se logado) ou login (se não logado) */}
         <Route path="*" element={isAuthenticated ? <Navigate to="/feed" replace /> : <Navigate to="/login" replace />} />
       </Routes>
 
-      {/* Renderiza o botão de nova publicação APENAS se não for página de auth E estiver logado */}
-      {!isAuthPage && isAuthenticated && (
-        <NewPostButton onNewPostClick={togglePostCreationModal} />
-      )}
+      {!isAuthPage && isAuthenticated && <NewPostButton onNewPostClick={togglePostCreationModal} />}
 
-      {/* Renderiza o modal de criação de post APENAS se não estiver carregando E estiver logado */}
       {!loadingAuthAndProfile && isAuthenticated && (
         <PostCreationModal
           isOpen={showPostCreationModal}
