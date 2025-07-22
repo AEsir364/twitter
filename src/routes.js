@@ -81,7 +81,7 @@ function AppContent() {
       {!isAuthPage && <Header />}
       
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<FeedPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/feed" element={isAuthenticated ? <FeedPage /> : <Navigate to="/login" replace />} />
